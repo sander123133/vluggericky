@@ -6,10 +6,10 @@ package com.model;
  */
 public class Speler extends  Charachter  {
     protected Wapen wapen;
-    protected String panster;
+    protected Panster panster;
     protected int geld;
 
-    public Speler(int levenspunten, String imageID, Wapen wapen, String pantser, int geld) {
+    public Speler(int levenspunten, String imageID, Wapen wapen, Panster pantser, int geld) {
         super(levenspunten, imageID);
         this.wapen = wapen;
         this.panster = pantser;
@@ -24,11 +24,11 @@ public class Speler extends  Charachter  {
         this.wapen = wapen;
     }
 
-    public String getPanster() {
+    public Panster getPanster() {
         return panster;
     }
 
-    public void setPanster(String panster) {
+    public void setPanster(Panster panster) {
         this.panster = panster;
     }
 

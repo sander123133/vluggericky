@@ -52,8 +52,9 @@ public class Gevecht implements Runnable{
      */
     public void krijgSchade(int hoeveelheid)
     {
-        speler.setLevenspunten(speler.getLevenspunten() - hoeveelheid);
-        System.out.println(speler.getLevenspunten());
+        speler.getPanster().ontvangSchade(hoeveelheid,speler,vijand);
+        System.out.println("speler: " + speler.getLevenspunten() + " vijand: " +
+                vijand.getLevenspunten());
         controleerDood();
     }
 

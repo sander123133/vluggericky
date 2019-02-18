@@ -13,6 +13,10 @@ import com.example.vluggericky.R;
 import com.model.Rekensom;
 import com.model.Speler;
 import com.model.Vijand;
+import com.model.pantsers.DagelijkseKleding;
+import com.model.pantsers.GoudenPantser;
+import com.model.vijanden.Aap;
+import com.model.vijanden.Kip;
 import com.model.wapens.HeelendZwaard;
 import com.model.wapens.Houtenzwaard;
 
@@ -28,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        speler = new Speler(100, "", new HeelendZwaard(), "", 0);
-        vijand = new Vijand(100, "");
+        speler = new Speler(100, "", new HeelendZwaard(), new GoudenPantser(), 0);
+        vijand = new Aap(100,"");
         final Gevecht gevecht = new Gevecht(speler, vijand, 10, this);
 
         setContentView(R.layout.activity_main);
