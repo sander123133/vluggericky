@@ -1,5 +1,9 @@
 package com.model;
 
+/**
+ * dit het character dat door de gebruiker wordt gebruikt,
+ *
+ */
 public class Speler extends  Charachter  {
     protected Wapen wapen;
     protected String panster;

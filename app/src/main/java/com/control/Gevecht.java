@@ -3,6 +3,12 @@ package com.control;
 import com.model.Speler;
 import com.model.Vijand;
 
+/**
+ * deze class zorgt voor logica binnen een gevecht:
+ * wanneer de speler schade krijgt
+ * wanneer de speler schade levert
+ * controleren of iemand het gevecht heeft gewonnen
+ */
 public class Gevecht {
     private Speler speler;
     private Vijand vijand;
@@ -15,6 +21,10 @@ public class Gevecht {
         this.beloningCredits = beloningCredits;
     }
 
+    /**
+     * deze methode wordt aangeroepen als de speler een som juist heeft beantwoord
+     * @param schade
+     */
     public void doeSchade(int schade)
     {
             speler.getWapen().voegSchadeToe(schade,speler,vijand);
@@ -24,6 +34,10 @@ public class Gevecht {
 
     }
 
+    /**
+     * deze methode wordt aangeroepen als de speler een som fout beantwoord heeft
+     * @param hoeveelheid
+     */
     public void krijgSchade(int hoeveelheid)
     {
         speler.setLevenspunten(speler.getLevenspunten() - hoeveelheid);
@@ -31,7 +45,11 @@ public class Gevecht {
         controleerDood();
     }
 
-    public void controleerDood()
+    /**
+     * deze methode wordt aangeroepen nadat een aanval is gedaan, als of de speler of de vijand
+     * minder dan 0 levenspunten heeft dan wordt het gevecht geindigt.
+     */
+    private void controleerDood()
     {
        if(vijand.getLevenspunten() <= 0)
        {

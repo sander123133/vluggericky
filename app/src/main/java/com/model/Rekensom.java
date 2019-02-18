@@ -2,11 +2,18 @@ package com.model;
 
 import com.control.Rekenvorm;
 
+
 public class Rekensom {
     private int eersteGetal;
     private int tweedeGetal;
     private Rekenvorm rekenvorm;
 
+    /**
+     * dit is de rekensom die uit een rekensomgenerator komt
+     * @param eersteGetal het eerste getal in het vraagstuk
+     * @param tweedeGetal het tweede getal in het vraagstuk
+     * @param rekenvorm of het *, /, -, + is (eventueel uitbreidbaar)
+     */
     public Rekensom(int eersteGetal, int tweedeGetal, Rekenvorm rekenvorm) {
         this.eersteGetal = eersteGetal;
         this.tweedeGetal = tweedeGetal;
