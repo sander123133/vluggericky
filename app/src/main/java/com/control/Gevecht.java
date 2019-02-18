@@ -1,7 +1,14 @@
 package com.control;
 
+import android.app.Activity;
+import android.widget.TextView;
+
+import com.example.vluggericky.R;
+import com.model.Rekensom;
 import com.model.Speler;
 import com.model.Vijand;
+
+import static java.lang.Thread.sleep;
 
 /**
  * deze class zorgt voor logica binnen een gevecht:
@@ -9,16 +16,17 @@ import com.model.Vijand;
  * wanneer de speler schade levert
  * controleren of iemand het gevecht heeft gewonnen
  */
-public class Gevecht {
+public class Gevecht{
     private Speler speler;
     private Vijand vijand;
     private int beloningCredits;
 
-    public Gevecht(Speler speler, Vijand vijand, int beloningCredits)
+    public Gevecht(Speler speler, Vijand vijand, int beloningCredits, Activity activity)
     {
         this.speler = speler;
         this.vijand = vijand;
         this.beloningCredits = beloningCredits;
+
     }
 
     /**
@@ -27,10 +35,10 @@ public class Gevecht {
      */
     public void doeSchade(int schade)
     {
-            speler.getWapen().voegSchadeToe(schade,speler,vijand);
-            System.out.println("speler: " + speler.getLevenspunten() + " vijand: " +
-                    vijand.getLevenspunten());
-            controleerDood();
+        speler.getWapen().voegSchadeToe(schade,speler,vijand);
+        System.out.println("speler: " + speler.getLevenspunten() + " vijand: " +
+                vijand.getLevenspunten());
+        controleerDood();
 
     }
 
@@ -49,19 +57,35 @@ public class Gevecht {
      * deze methode wordt aangeroepen nadat een aanval is gedaan, als of de speler of de vijand
      * minder dan 0 levenspunten heeft dan wordt het gevecht geindigt.
      */
-    private void controleerDood()
+    public boolean controleerDood()
     {
-       if(vijand.getLevenspunten() <= 0)
-       {
-           System.out.println("je hebt gewonnen!");
-           speler.setGeld(beloningCredits);
-       }
-       else if(speler.getLevenspunten() <= 0)
-       {
-           System.out.println("je bent helemaal kaolokapot gemaakt");
-       }
+        boolean iseriemandood = false;
+        if(vijand.getLevenspunten() <= 0)
+        {
+            System.out.println("je hebt gewonnen!");
+            speler.setGeld(beloningCredits);
+            iseriemandood = true;
+        }
+        else if(speler.getLevenspunten() <= 0)
+        {
+            System.out.println("je bent helemaal kaolokapot gemaakt");
+            iseriemandood = true;
+        }
+        return  iseriemandood;
+    }
+
+    public boolean controleerSom(int antwoord, Rekensom rekensom)
+    {
+        boolean somcorrect = false;
+        if(antwoord == rekensom.antwoord())
+        {
+            somcorrect = true;
+
+        }
+        return  somcorrect;
 
     }
+
 
 
 

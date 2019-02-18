@@ -18,50 +18,84 @@ import com.model.wapens.Houtenzwaard;
 
 import org.w3c.dom.Text;
 
+import static java.lang.Thread.sleep;
+
 public class MainActivity extends AppCompatActivity {
     Rekensomgenerator rekensomgenerator = new Rekensomgenerator();
     Speler speler;
     Vijand vijand;
-    Rekensom rekensom;
+    Rekensom momenteleRekensom;
+
+    private boolean somgoed;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        speler = new Speler(100,"",new HeelendZwaard(), "", 0);
-        vijand = new Vijand(100,"");
-        final Gevecht gevecht = new Gevecht(speler,vijand, 10);
+        speler = new Speler(100, "", new HeelendZwaard(), "", 0);
+        vijand = new Vijand(100, "");
+        final Gevecht gevecht = new Gevecht(speler, vijand, 10, this);
+
         setContentView(R.layout.activity_main);
         Button klikhier = findViewById(R.id.test_generering);
         final TextView inputTxt = findViewById(R.id.rekensom_iput);
-        klikhier.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rekensom = rekensomgenerator.genereerSom(Rekenvorm.DELEN);
-                inputTxt.setText(rekensom.toString());
-            }
-        });
+
 
         final Button controleerSom = findViewById(R.id.kiesantwoordknop);
         final TextView antwoordtekst = findViewById(R.id.antwoordTekst);
+
+
+        final Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                    boolean gevechtNogBezig = true;
+                    while(gevechtNogBezig)
+                    {
+                        momenteleRekensom = rekensomgenerator.genereerSom(Rekenvorm.KEER);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                inputTxt.setText(momenteleRekensom.toString());
+                            }
+                        });
+
+                        try {
+                            int wachtmoment = 0;
+                            while(wachtmoment < 50 && !somgoed) {
+                                sleep(100);
+                                wachtmoment++;
+                            }
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        if(somgoed)
+                        {
+                            gevecht.doeSchade(momenteleRekensom.antwoord());
+                        }
+                        else
+                        {
+                            gevecht.krijgSchade(momenteleRekensom.antwoord());
+                        }
+                            somgoed = false;
+                        if(gevecht.controleerDood())
+                        {
+                            gevechtNogBezig = false;
+
+                        }
+
+                    }
+                }
+
+        });
+        thread.start();
         controleerSom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Integer.valueOf(antwoordtekst.getText().toString()) == rekensom.antwoord())
-                {
-                    gevecht.doeSchade(rekensom.antwoord());
-                }
-                else
-                {
-                    gevecht.krijgSchade(rekensom.antwoord());
-                }
-                rekensom = rekensomgenerator.genereerSom(Rekenvorm.DELEN);
-                inputTxt.setText(rekensom.toString());
-                antwoordtekst.setText("");
+                somgoed = gevecht.controleerSom(Integer.valueOf(antwoordtekst.getText().toString()), momenteleRekensom);
             }
         });
 
 
-
-
-
     }
-}
+    }
