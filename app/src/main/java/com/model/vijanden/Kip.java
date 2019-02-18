@@ -4,17 +4,29 @@ import com.model.Vijand;
 
 public class Kip extends Vijand {
 
-    public Kip(int levenspunten, String imageID) {
-        super(levenspunten, imageID);
+    public Kip(int levenspunten, String imageID, boolean isEenBaas) {
+        super(levenspunten, imageID, isEenBaas);
     }
 
     @Override
     public int leverSchade(int hoeveelheid) {
-        return (int) (hoeveelheid * 0.90);
+                if(isEenBaas()) {
+            return (int) (hoeveelheid * 1.10);
+        }
+        else {
+            return (int) (hoeveelheid * 0.90);
+        }
     }
+
 
     @Override
     public int ontvangSchade(int hoeveelheid) {
-        return  hoeveelheid;
+        if(isEenBaas()) {
+            return (int) (hoeveelheid * 0.90);
+        }
+        else {
+            return hoeveelheid;
+        }
     }
 }
+

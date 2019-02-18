@@ -1,7 +1,5 @@
 package com.model;
 
-import com.control.Rekenvorm;
-
 
 public class Rekensom {
     private int eersteGetal;

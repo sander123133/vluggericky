@@ -1,4 +1,4 @@
-package com.control;
+package com.model;
 
 /**
  * Deze class zal gebruikt worden om de rekenvormen de onderscheiden van elkaar

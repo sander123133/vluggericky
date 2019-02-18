@@ -2,6 +2,7 @@ package com.control;
 
 
 import com.model.Rekensom;
+import com.model.Rekenvorm;
 
 /**
  * deze class genereert sommen die opgelost kunnen worden

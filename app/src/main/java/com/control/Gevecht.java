@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import com.example.vluggericky.R;
 import com.model.Rekensom;
+import com.model.Rekenvorm;
 import com.model.Speler;
 import com.model.Vijand;
 
@@ -35,10 +36,12 @@ public class Gevecht implements Runnable{
 
     /**
      * deze methode wordt aangeroepen als de speler een som juist heeft beantwoord
-     * @param schade
+     * @param schade is de hoeveelheid schade die is geleverd
      */
     public void doeSchade(int schade)
     {
+        //voegt de schade multypliers toe
+        vijand.ontvangSchade(schade);
         speler.getWapen().voegSchadeToe(schade,speler,vijand);
         System.out.println("speler: " + speler.getLevenspunten() + " vijand: " +
                 vijand.getLevenspunten());
@@ -48,10 +51,12 @@ public class Gevecht implements Runnable{
 
     /**
      * deze methode wordt aangeroepen als de speler een som fout beantwoord heeft
-     * @param hoeveelheid
+     * @param hoeveelheid is de hoeveelheid schade is geleverd
      */
     public void krijgSchade(int hoeveelheid)
     {
+        //voegt de schade multypliers toe
+        vijand.leverSchade(hoeveelheid);
         speler.getPanster().ontvangSchade(hoeveelheid,speler,vijand);
         System.out.println("speler: " + speler.getLevenspunten() + " vijand: " +
                 vijand.getLevenspunten());
@@ -79,6 +84,13 @@ public class Gevecht implements Runnable{
         return  iseriemandood;
     }
 
+    /**
+     * deze methode controleert of de ingevulde waarde correct is en past dan dit aan in deze klasse,
+     * als het binnen de tijd gebeurt dan wordt er schade gegeven aan de vijand
+     * is het antwoord fout of ben je te laat, dan wordt de schade geleverd aan de speler
+     * @param antwoord is het ingevoerde antwoord
+     * @return
+     */
     public boolean controleerSom(int antwoord)
     {
         boolean somcorrect = false;

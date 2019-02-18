@@ -2,29 +2,31 @@ package com.model.vijanden;
 
 import com.model.Vijand;
 
-public class Aap extends Vijand {
+public class Neushoorn extends Vijand {
 
-    public Aap(int levenspunten, String imageID, boolean isEenBaas) {
+    public Neushoorn(int levenspunten, String imageID, boolean isEenBaas) {
         super(levenspunten, imageID, isEenBaas);
     }
 
     @Override
     public int leverSchade(int hoeveelheid) {
         if(isEenBaas()) {
-            return (int) (hoeveelheid * 1.40);
+            return (int) (hoeveelheid * 1.35);
         }
         else {
-            return (int) (hoeveelheid * 1.20);
+            return (int) (hoeveelheid * 1.25);
         }
     }
+
 
     @Override
     public int ontvangSchade(int hoeveelheid) {
         if(isEenBaas()) {
-            return (int) (hoeveelheid * 0.75);
+            return (int) (hoeveelheid * 0.25);
         }
         else {
-            return (int) (hoeveelheid * 0.80);
+            return (int) (hoeveelheid * 0.50);
         }
     }
 }
+
