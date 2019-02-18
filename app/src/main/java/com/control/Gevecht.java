@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.widget.TextView;
 
 import com.example.vluggericky.R;
+import com.model.Moeilijkheidsgraad;
 import com.model.Rekensom;
 import com.model.Rekenvorm;
 import com.model.Speler;
@@ -110,7 +111,7 @@ public class Gevecht implements Runnable{
         boolean gevechtNogBezig = true;
         while(gevechtNogBezig)
         {
-            momenteleRekensom = rekensomgenerator.genereerSom(Rekenvorm.KEER);
+            momenteleRekensom = rekensomgenerator.genereerSom(Rekenvorm.KEER, Moeilijkheidsgraad.MAKKELIJK);
             final TextView inputtext = activity.findViewById(R.id.rekensom_iput);
             activity.runOnUiThread(new Runnable() {
                 @Override
