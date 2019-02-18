@@ -18,7 +18,6 @@ import com.model.wapens.HeelendZwaard;
 import static java.lang.Thread.sleep;
 
 public class MainActivity extends AppCompatActivity {
-    Rekensomgenerator rekensomgenerator = new Rekensomgenerator();
     Speler speler;
     Vijand vijand;
 
