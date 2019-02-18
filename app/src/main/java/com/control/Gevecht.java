@@ -16,17 +16,21 @@ import static java.lang.Thread.sleep;
  * wanneer de speler schade levert
  * controleren of iemand het gevecht heeft gewonnen
  */
-public class Gevecht{
+public class Gevecht implements Runnable{
     private Speler speler;
     private Vijand vijand;
     private int beloningCredits;
+    private Rekensom momenteleRekensom;
+    private boolean somgoed;
+    private Activity activity;
+    private Rekensomgenerator rekensomgenerator = new Rekensomgenerator();
 
     public Gevecht(Speler speler, Vijand vijand, int beloningCredits, Activity activity)
     {
         this.speler = speler;
         this.vijand = vijand;
         this.beloningCredits = beloningCredits;
-
+        this.activity = activity;
     }
 
     /**
@@ -74,19 +78,59 @@ public class Gevecht{
         return  iseriemandood;
     }
 
-    public boolean controleerSom(int antwoord, Rekensom rekensom)
+    public boolean controleerSom(int antwoord)
     {
         boolean somcorrect = false;
-        if(antwoord == rekensom.antwoord())
+        if(antwoord == momenteleRekensom.antwoord())
         {
             somcorrect = true;
-
+            somgoed = true;
         }
         return  somcorrect;
 
     }
 
 
+    @Override
+    public void run() {
 
+        boolean gevechtNogBezig = true;
+        while(gevechtNogBezig)
+        {
+            momenteleRekensom = rekensomgenerator.genereerSom(Rekenvorm.KEER);
+            final TextView inputtext = activity.findViewById(R.id.rekensom_iput);
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    inputtext.setText(momenteleRekensom.toString());
+                }
+            });
 
+            try {
+                int wachtmoment = 0;
+                while(wachtmoment < 50 && !somgoed) {
+                    sleep(100);
+                    wachtmoment++;
+                }
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if(somgoed)
+            {
+                doeSchade(momenteleRekensom.antwoord());
+            }
+            else
+            {
+                krijgSchade(momenteleRekensom.antwoord());
+            }
+            somgoed = false;
+            if(controleerDood())
+            {
+                gevechtNogBezig = false;
+
+            }
+
+        }
+    }
 }
