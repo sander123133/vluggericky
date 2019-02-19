@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.control.Gevecht;
 import com.control.Rekensomgenerator;
 import com.example.vluggericky.R;
+import com.model.Moeilijkheidsgraad;
 import com.model.Speler;
 import com.model.Vijand;
 import com.model.pantsers.GoudenPantser;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         speler = new Speler(100, "", new HeelendZwaard(), new GoudenPantser(), 0);
         vijand = new Aap(100,"", false);
-        final Gevecht gevecht = new Gevecht(speler, vijand, 10, this);
+        final Gevecht gevecht = new Gevecht(speler, vijand, 10, this, Moeilijkheidsgraad.GEMIDDELD);
 
         setContentView(R.layout.activity_main);
         Button klikhier = findViewById(R.id.test_generering);

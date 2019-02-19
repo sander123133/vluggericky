@@ -26,13 +26,15 @@ public class Gevecht implements Runnable{
     private boolean somgoed;
     private Activity activity;
     private Rekensomgenerator rekensomgenerator = new Rekensomgenerator();
+    private Moeilijkheidsgraad moeilijkheidsgraad;
 
-    public Gevecht(Speler speler, Vijand vijand, int beloningCredits, Activity activity)
+    public Gevecht(Speler speler, Vijand vijand, int beloningCredits, Activity activity, Moeilijkheidsgraad moeilijkheidsgraad)
     {
         this.speler = speler;
         this.vijand = vijand;
         this.beloningCredits = beloningCredits;
         this.activity = activity;
+        this.moeilijkheidsgraad = moeilijkheidsgraad;
     }
 
     /**
@@ -122,9 +124,18 @@ public class Gevecht implements Runnable{
 
             try {
                 int wachtmoment = 0;
-                while(wachtmoment < 50 && !somgoed) {
-                    sleep(100);
-                    wachtmoment++;
+                if(moeilijkheidsgraad == Moeilijkheidsgraad.GEMIDDELD || moeilijkheidsgraad == Moeilijkheidsgraad.MOEILIJK) {
+                    while (wachtmoment < 30 && !somgoed) {
+                        sleep(100);
+                        wachtmoment++;
+                    }
+                }
+                else
+                {
+                    while (wachtmoment < 30 && !somgoed) {
+                        sleep(100);
+                        wachtmoment++;
+                    }
                 }
                 Thread.sleep(100);
             } catch (InterruptedException e) {
