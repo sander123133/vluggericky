@@ -113,7 +113,7 @@ public class Gevecht implements Runnable{
         boolean gevechtNogBezig = true;
         while(gevechtNogBezig)
         {
-            momenteleRekensom = rekensomgenerator.genereerSom(Rekenvorm.KEER, Moeilijkheidsgraad.MAKKELIJK);
+            momenteleRekensom = rekensomgenerator.genereerSom(Rekenvorm.DELEN, Moeilijkheidsgraad.MAKKELIJK);
             final TextView inputtext = activity.findViewById(R.id.rekensom_iput);
             activity.runOnUiThread(new Runnable() {
                 @Override

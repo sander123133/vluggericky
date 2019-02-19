@@ -34,7 +34,12 @@ public class Rekensomgenerator {
                         mogelijkeDeling = true;
                     }
                 }
-            } else {
+            } else if(rekenvorm == Rekenvorm.AFTERKKEN || rekenvorm == Rekenvorm.PLUS){
+                int eersteGetal = (int) ((Math.random() * 50) + 1);
+                int tweedeGetal = (int) ((Math.random() * 50) + 1);
+                rekensom = new Rekensom(eersteGetal, tweedeGetal, rekenvorm);
+            }
+            else{
                 int eersteGetal = (int) ((Math.random() * 10) + 1);
                 int tweedeGetal = (int) ((Math.random() * 10) + 1);
                 rekensom = new Rekensom(eersteGetal, tweedeGetal, rekenvorm);
