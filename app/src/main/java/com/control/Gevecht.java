@@ -125,14 +125,14 @@ public class Gevecht implements Runnable{
             try {
                 int wachtmoment = 0;
                 if(moeilijkheidsgraad == Moeilijkheidsgraad.GEMIDDELD || moeilijkheidsgraad == Moeilijkheidsgraad.MOEILIJK) {
-                    while (wachtmoment < 30 && !somgoed) {
+                    while (wachtmoment < 50 && !somgoed) {
                         sleep(100);
                         wachtmoment++;
                     }
                 }
                 else
                 {
-                    while (wachtmoment < 30 && !somgoed) {
+                    while (wachtmoment < 100 && !somgoed) {
                         sleep(100);
                         wachtmoment++;
                     }
