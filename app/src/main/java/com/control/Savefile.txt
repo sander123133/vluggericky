@@ -1,0 +1,5 @@
+{
+"geld" : 0,
+"wapen" : "houten zwaard",
+"pantser" : "dagelijksekleding kleding",
+}

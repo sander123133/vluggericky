@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.control.Gevecht;
 import com.control.Rekensomgenerator;
+import com.control.SaveFileReader;
 import com.example.vluggericky.R;
 import com.model.Moeilijkheidsgraad;
 import com.model.Speler;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        speler = new Speler(100, "", new HeelendZwaard(), new GoudenPantser(), 0);
+        speler = SaveFileReader.readSpeler();
         vijand = new Aap(100,"", false);
         final Gevecht gevecht = new Gevecht(speler, vijand, 10, this, Moeilijkheidsgraad.GEMIDDELD);
 
