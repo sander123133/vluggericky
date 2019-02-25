@@ -44,7 +44,7 @@ public class Gevecht implements Runnable{
     public void doeSchade(int schade)
     {
         //voegt de schade multypliers toe
-        vijand.ontvangSchade(schade);
+        //vijand.ontvangSchade(schade);
         speler.getWapen().voegSchadeToe(schade,speler,vijand);
         System.out.println("speler: " + speler.getLevenspunten() + " vijand: " +
                 vijand.getLevenspunten());
