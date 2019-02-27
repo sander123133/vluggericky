@@ -9,7 +9,7 @@ public class Spin extends Vijand {
     }
 
     @Override
-    public int leverSchade(int hoeveelheid) {
+    public int doeSchade(int hoeveelheid) {
         if(isEenBaas()) {
             return (int) (hoeveelheid * 1.75);
         }

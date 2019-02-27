@@ -11,7 +11,7 @@ public abstract class Vijand extends Charachter {
         this.isEenBaas = isEenBaas;
     }
 
-    public abstract int leverSchade(int hoeveelheid);
+    public abstract int doeSchade(int hoeveelheid);
 
     public abstract int ontvangSchade(int hoeveelheid);
 
@@ -19,7 +19,4 @@ public abstract class Vijand extends Charachter {
         return isEenBaas;
     }
 
-    public void setEenBaas(boolean eenBaas) {
-        isEenBaas = eenBaas;
-    }
 }
