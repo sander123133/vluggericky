@@ -9,6 +9,7 @@ import com.model.Rekensom;
 import com.model.Rekenvorm;
 import com.model.Speler;
 import com.model.Vijand;
+import com.model.wapens.SterkerwordendZwaard;
 
 import static java.lang.Thread.sleep;
 
@@ -59,6 +60,11 @@ public class Gevecht implements Runnable{
     public void krijgSchade(int hoeveelheid)
     {
         //voegt de schade multypliers toe
+
+        if(speler.getWapen() instanceof SterkerwordendZwaard)
+        {
+            ((SterkerwordendZwaard) speler.getWapen()).setMultypliler(1);
+        }
         vijand.doeSchade(hoeveelheid);
         speler.getPanster().ontvangSchade(hoeveelheid,speler,vijand);
         System.out.println("speler: " + speler.getLevenspunten() + " vijand: " +

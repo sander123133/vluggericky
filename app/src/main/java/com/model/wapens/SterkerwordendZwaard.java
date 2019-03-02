@@ -15,4 +15,12 @@ public class SterkerwordendZwaard extends Wapen {
         vijand.setLevenspunten((int) (vijand.getLevenspunten() - schade * multypliler));
         multypliler =+ 0.20;
     }
+
+    public double getMultypliler() {
+        return multypliler;
+    }
+
+    public void setMultypliler(double multypliler) {
+        this.multypliler = multypliler;
+    }
 }
